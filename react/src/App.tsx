@@ -1,11 +1,11 @@
 import React from "react";
 import { Card } from "./Card";
 import { User } from "./types/User";
-
+import "./App.css";
 // Create a input to enter the name of the user
 
 function App() {
-  const [userName, setUserName] = React.useState("");
+  const [userName, setUserName] = React.useState("AllusiveWheat");
   const [data, setData] = React.useState<User>();
   const APIURL = "https://api.github.com/users/";
 
@@ -27,7 +27,8 @@ function App() {
     });
   }
 
-  let card = <div>Loading...</div>;
+  let card;
+
   if (data) {
     card = <Card data={data} />;
   }
@@ -35,13 +36,12 @@ function App() {
   return (
     <div className="App">
       <input
-        className="rounded text-pink-500"
         type="text"
         value={userName}
         onChange={(e) => setUserName(e.target.value)}
       />
       <button onClick={submitRequest}>Submit</button>
-      {card}
+      <div className="flex-col align-bottom">{card}</div>
     </div>
   );
 }
